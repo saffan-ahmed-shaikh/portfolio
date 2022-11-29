@@ -1,0 +1,269 @@
+@media only screen and (min-width:767px) and (max-width:992px) {
+  body.p-5 {
+    padding: 2rem !important;
+  }
+
+  main.w-75 {
+    width: 85% !important;
+  }
+
+  main .first-row {
+    margin-bottom: 0 !important;
+  }
+
+  .card-title .row {
+    padding: 2rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  .profile-container {
+    width: 150px !important;
+    height: 160px !important;
+    left: 1.9rem !important;
+  }
+
+  .info-container {
+    padding-left: 1rem !important;
+  }
+
+  .info-container h1 {
+    font-size: 28px !important;
+    margin-bottom: 1rem !important;
+  }
+  .info-container h6 {
+    font-size: 18px !important;
+    margin-bottom: 1rem !important;
+  }
+  .info-container .button-row button {
+    font-size: 14px !important;
+  }
+
+  .aboutme-container.p-5,
+  .skills-container.px-5,
+  .work-exp-container.px-5,
+  .education-container.px-5,
+  .contact-container.px-5 {
+    padding-left: 1.7rem !important;
+    padding-right: 1.7rem !important;
+  }
+
+}
+
+@media only screen and (max-width:767px) {
+  body.p-5 {
+    padding: 1rem !important;
+  }
+
+  main.w-75 {
+    width: 90% !important;
+  }
+
+  .container-fluid.pt-4 {
+    padding-top: 1rem !important;
+  }
+
+  main .first-row {
+    margin-bottom: 0.5rem !important;
+    flex-direction: column;
+  }
+
+  main .first-row h5 {
+    font-size: 14px;
+    margin-bottom: 0 !important;
+  }
+
+  main .first-row a i {
+    font-size: 12px;
+  }
+  .card-title {
+    background: #66bfbf
+
+  }
+  .card-title .row {
+    padding: 1rem !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card-title .profile-container {
+    width: 85px !important;
+    height: 100px !important;
+    padding: 4px !important;
+    position: static;
+    margin-bottom: 1rem !important;
+  }
+
+  .info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .info-container h1 {
+    font-size: 17px !important;
+    margin-bottom: 0px !important;
+  }
+
+  .info-container h6 {
+    font-size: 14px !important;
+    margin-bottom: 5px !important;
+  }
+
+  .info-container .button-row {
+    gap: 10px !important;
+  }
+
+  .info-container button:first-child {
+    width: 90px !important;
+    height: 21px !important;
+    font-size: 9px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .info-container button:nth-child(2) {
+    width: 60px;
+    height: 21px;
+    font-size: 9px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .aboutme-container.p-5,
+  .skills-container.px-5,
+  .work-exp-container.px-5,
+  .education-container.px-5,
+  .contact-container.px-5 {
+    padding: 1rem !important;
+  }
+
+  .aboutme-container h2,
+  .skills-container h2,
+  .education-container h2,
+  .work-exp-container h2,
+  .contact-container h2 {
+    font-size: 1rem !important;
+    margin-bottom: 10px !important;
+  }
+
+  .aboutme-container div:first-child {
+    padding-left: 0 !important ;
+    padding-right: 0 !important ;
+    margin-bottom: 5px !important;
+  }
+  .aboutme-container p {
+    font-size: 12px !important;
+    line-height: 1.1 !important;
+  }
+
+  .aboutme-container .detail-container {
+    margin-top: 0px !important;
+  }
+
+  .aboutme-container .detail-container h6 {
+    font-size: 13px;
+    margin-bottom: 0;
+    line-height: 1;
+  }
+
+  .aboutme-container .detail-container p {
+    font-size: 14px;
+    margin-bottom: 0;
+    line-height: 1;
+  }
+
+
+
+  .pl-10 {
+    padding-left: 10px !important;
+  }
+
+  .skills-container p {
+    font-size: 12px !important;
+    margin-bottom: 5px !important;
+  }
+
+  .skills-container .progress {
+    height: 10px !important;
+  }
+
+  .work-exp-container .container-fluid,
+  .education-container .container-fluid {
+    padding-left: 24px !important;
+  }
+
+  .work-exp-container .card::before,
+  .education-container .card::before {
+    left: -32px !important;
+  }
+
+  .work-exp-container .card::after,
+  .education-container .card::after {
+    width: 19px !important;
+    left: -21px !important;
+  }
+
+  .work-exp-container .card,
+  .education-container .card {
+    padding: 12px !important;
+  }
+
+  .work-exp-container .card h5,
+  .education-container .card h5 {
+    font-size: 16px !important;
+    display: block !important;
+    margin-bottom: 0 !important;
+  }
+
+  .work-exp-container .card h6,
+  .education-container .card h6 {
+    font-size: 14px !important;
+    margin-bottom: 0;
+  }
+
+  .work-exp-container .card p,
+  .education-container .card p {
+    font-size: 12px !important;
+    line-height: 1.1 !important;
+  }
+
+  .contact-container input {
+    height: 30px !important;
+    font-size: 12px !important;
+  }
+
+  .contact-container textarea {
+    font-size: 12px !important;
+  }
+
+  .contact-container .form-group:nth-child(2) {
+    margin-bottom: 1rem !important;
+  }
+
+  .contact-container form button {
+    font-size: 12px !important;
+    width: 100% !important;
+  }
+
+  .contact-container .form-container {
+    margin-bottom: 2rem !important;
+  }
+
+  footer .author h5 {
+    margin-bottom: 0.5rem !important;
+  }
+
+  footer .author .social-icons {
+    margin-bottom: 1rem !important;
+  }
+
+  footer .rights-row p {
+    margin-bottom: 0 !important;
+  }
+
+}

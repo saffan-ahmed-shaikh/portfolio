@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-family: 'poppins' !important;
+}
+h2,
+.info-container h6 {
+  font-family: 'Patrick Hand', cursive !important;
+ }
+ 
+.first-row h5{
+  color: #000000;
+}
+.mb-100 {
+  margin-bottom: 100px !important;
+}
+.info-container h6 {
+  font-size: 20px !important;
+  letter-spacing: 1.1px;
+}
+.info-container button:first-child{
+  background-color: #eaf6f6 !important;
+}
+ .card-title {
+  border-top-left-radius: 5px !important;
+  border-top-right-radius: 5px !important;
+  background-size: contain;
+  background: linear-gradient(to right, #eaf6f6 0%, #66bfbf 50%) !important;
+  margin-bottom: 0 !important;
+}
+
+.aboutme-container,
+.work-exp-container,
+.contact-container {
+  margin: 0 !important;
+  color: #2a5353;
+}
+.skills-container,
+.education-container {
+  color: #066161;
+}
+
+main .card,
+.aboutme-container,
+.work-exp-container,
+.contact-container,
+.education-container .card {
+  background: #eaf6f6;
+}
+.skills-container,
+.education-container,
+.work-exp-container .card {
+  background: #bae8e8;
+  /* background: linear-gradient(to right, #eaf6f6 10%, #bae8e8 90%) !important; */
+}
+
+.skills-container {
+  border-top-right-radius: 30% !important;
+}
+.education-container {
+  border-bottom-right-radius: 25% !important;
+}
+ .profile-container {
+  width: 200px !important;
+  height: 220px !important;
+  position: absolute;
+  bottom: -1rem;
+  left: 54px !important;
+  background: #bae8e8 !important;
+ }
+ .profile-container img {
+  width: 100%;
+  height: 100%;
+  filter: grayscale(0.9) brightness(110%);
+ }
+ .lh-container p {
+  line-height: 19.2px !important;
+ }
+ .html-pb{
+  width: 90%;
+ }
+ .css-pb {
+  width: 85%;
+ }
+ .bs-pb {
+  width: 80%;
+ }
+.js-pb {
+  width: 10%;
+}
+.tg-pb {
+  width: 70%;
+}
+.border-left {
+  border-left: 1px solid rgb(52, 100, 100);
+}
+.work-exp-container .card:hover,
+.education-container .card:hover {
+  transform: translate(0, -8px) !important;
+}
+
+.work-exp-container .card,
+.education-container .card{
+  position: relative;
+  border-radius: 2px;
+  border-left: 3px solid #2f5284 !important; 
+
+}
+.work-exp-container .card::before,
+.education-container .card::before {
+  content: '';
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid #2f5284;
+  left: -58px;
+  top: 1rem;
+}
+.work-exp-container .card::after, 
+.education-container .card::after {
+  content: '';
+  position: absolute;
+    width: 46px;
+    height: 2px;
+    background-color: #2f5284;
+    top: 21px;
+    left: -47px;
+}
+
+
+.progress-bar{
+  background-color: #2f5284 !important;
+}
+form textarea {
+  resize: none;
+}
+form button {
+  width: 80px !important;
+  background-color: #139393 !important;
+  
+}
+form input:focus,
+form textarea:focus {
+  box-shadow: none !important;
+}
+footer .rights-row a {
+  text-decoration:dashed;
+}
+.social-icons a:hover i {
+  color:#346464;
+}
+
+footer {
+  background: linear-gradient(to top, #eaf6f6 0%, #66bfbf 90%) !important;
+  position: relative !important;
+  overflow-x: clip;
+}
+
+footer .wave {
+  position: absolute !important;
+  top: -90px !important;
+  left: 0 !important;
+  width: 6400px !important;
+  height: 90px !important ;
+  background: url("../img/wave.svg") repeat-x;
+  animation: wave 10s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+}
+footer .wave#wave2 {
+  top: -60px !important;
+  height: 60px !important;
+  left: 0px !important;
+  animation: wave 10s cubic-bezier(0.36, 0.45, 0.63, 0.53) -0.125s infinite
+  wave_02 7s ease -1.25s infinite !important;
+}
+footer .wave#wave3 {
+  top: -70px !important;
+  height: 70px !important;
+  left: 500px !important;
+  animation: wave 10s cubic-bezier(0.075, 0.82, 0.165, 1) infinite
+  wave_03 7s ease -1.25s infinite !important;
+}
+
+@keyframes wave {
+  0%{
+    margin-left: 0;
+  }
+  100% {
+    margin-left: -1600px;
+  }
+}
+
+
+@keyframes wave_02 {
+  0%,100%{
+    transform: translate3d(0, -25px, 0);
+  }
+  50% {
+    transform: translate3d(0, 5px, 0);
+  }
+}
+
+@keyframes wave_03 {
+  0%,100%{
+    transform: translate3d(0, -25px, 0);
+  }
+  50% {
+    transform: translate3d(0, 5px, 0);
+  }
+}
