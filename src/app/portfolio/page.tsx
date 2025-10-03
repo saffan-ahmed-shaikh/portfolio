@@ -1,8 +1,7 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import Icon from "../../components/Icon";
+import ProjectCard from "../../components/ProjectCard";
 
 const projects = [
   {
@@ -67,17 +66,37 @@ export default function PortfolioPage() {
       <section>
         <ul className="filter-list">
           <li className="filter-item">
-            <button className="active" onClick={() => setFilter("all")}>
+            <button
+              className={filter === "all" ? "active" : ""}
+              onClick={() => {
+                setFilter("all");
+                setSelectLabel("All");
+              }}
+            >
               All
             </button>
           </li>
 
           <li className="filter-item">
-            <button onClick={() => setFilter("Website")}>Website</button>
+            <button
+              className={filter === "Website" ? "active" : ""}
+              onClick={() => {
+                setFilter("Website");
+                setSelectLabel("Website");
+              }}
+            >
+              Website
+            </button>
           </li>
 
           <li className="filter-item">
-            <button onClick={() => setFilter("Web Application")}>
+            <button
+              className={filter === "Web Application" ? "active" : ""}
+              onClick={() => {
+                setFilter("Web Application");
+                setSelectLabel("Web Application");
+              }}
+            >
               Web Application
             </button>
           </li>
@@ -133,44 +152,9 @@ export default function PortfolioPage() {
           </ul>
         </div>
         <ul className="project-list">
-          {filteredProjects.map((proj, i) => {
-            const href = proj.href ?? "#";
-            return (
-              <li
-                key={i}
-                className="project-item active"
-                data-filter-item
-                data-category={proj.category}
-              >
-                <Link
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="project-link"
-                >
-                  <figure className="project-img">
-                    <div className="project-item-icon-box">
-                      <Icon name="eye-outline" />
-                    </div>
-
-                    {/* Use explicit width/height so Next/Image renders an img that fills the figure */}
-                    <Image
-                      src={proj.img}
-                      alt={proj.title}
-                      width={1200}
-                      height={600}
-                      className="project-image"
-                      priority
-                    />
-                  </figure>
-
-                  <h3 className="project-title">{proj.title}</h3>
-
-                  <p className="project-category">{proj.category}</p>
-                </Link>
-              </li>
-            );
-          })}
+          {filteredProjects.map((proj, i) => (
+            <ProjectCard key={i} project={proj} />
+          ))}
         </ul>
       </section>
     </article>

@@ -1,17 +1,63 @@
 import Icon from "../../components/Icon";
 
+type Skill = { name: string; percent: number };
+
 export default function ResumePage() {
+  const skills: Skill[] = [
+    { name: "TypeScript", percent: 90 },
+    { name: "JavaScript", percent: 90 },
+    { name: "React.js / Next.js", percent: 90 },
+    { name: "SQL", percent: 80 },
+    { name: "Python", percent: 60 },
+    { name: "Angular.js", percent: 70 },
+    { name: "Node.js / Express.js", percent: 85 },
+    { name: "NestJS", percent: 75 },
+    { name: "MongoDB", percent: 80 },
+    { name: "MySQL", percent: 80 },
+    { name: "AWS", percent: 75 },
+    { name: "Azure", percent: 65 },
+    { name: "Docker", percent: 70 },
+    { name: "Linux", percent: 70 },
+  ];
+
+  // sort descending by percent (highest first)
+  const sortedSkills = [...skills].sort((a, b) => b.percent - a.percent);
+
   return (
     <article className="resume active" data-page="resume">
       <h2 className="h2 article-title">Resume</h2>
-      <section className="timeline">
-        <div className="title-wrapper">
-          <div className="icon-box">
-            <Icon name="book-outline" />
+      {/* Education header with resume download button on the right */}
+      <section style={{ marginTop: 16 }}>
+        <div className="resume-header">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 12,
+              width: "100%",
+            }}
+          >
+            <div className="icon-box">
+              <Icon name="book-outline" />
+            </div>
+
+            <h3 className="h3">Education</h3>
           </div>
 
-          <h3 className="h3">Education</h3>
+          <div className="resume-controls">
+            <a
+              className="form-btn resume-download"
+              href="/Safwan_Ahmed.pdf"
+              download="Safwan_Ahmed.pdf"
+              aria-label="Download resume as PDF"
+            >
+              Download Resume
+            </a>
+          </div>
         </div>
+      </section>
+      <section className="timeline">
+        <div className="title-wrapper"></div>
         <ol className="timeline-list">
           <li className="timeline-item">
             <h4 className="h4 timeline-item-title">Mumbai University</h4>
@@ -125,192 +171,20 @@ export default function ResumePage() {
       <section className="skill">
         <h3 className="h3 skills-title">My Skills</h3>
         <div className="skills-grid">
-          {/* Languages */}
-          <div className="skills-item">
-            <div className="title-wrapper">
-              <h5 className="h5">TypeScript</h5>
-              <data value="90">90%</data>
+          {sortedSkills.map((s) => (
+            <div className="skills-item" key={s.name}>
+              <div className="title-wrapper">
+                <h5 className="h5">{s.name}</h5>
+                <data value={String(s.percent)}>{s.percent}%</data>
+              </div>
+              <div className="skill-progress-bg">
+                <div
+                  className="skill-progress-fill"
+                  style={{ width: `${s.percent}%` }}
+                ></div>
+              </div>
             </div>
-            <div className="skill-progress-bg">
-              <div
-                className="skill-progress-fill"
-                style={{ width: "90%" }}
-              ></div>
-            </div>
-          </div>
-
-          <div className="skills-item">
-            <div className="title-wrapper">
-              <h5 className="h5">JavaScript</h5>
-              <data value="90">90%</data>
-            </div>
-            <div className="skill-progress-bg">
-              <div
-                className="skill-progress-fill"
-                style={{ width: "90%" }}
-              ></div>
-            </div>
-          </div>
-
-          <div className="skills-item">
-            <div className="title-wrapper">
-              <h5 className="h5">React.js / Next.js</h5>
-              <data value="90">90%</data>
-            </div>
-            <div className="skill-progress-bg">
-              <div
-                className="skill-progress-fill"
-                style={{ width: "90%" }}
-              ></div>
-            </div>
-          </div>
-
-          <div className="skills-item">
-            <div className="title-wrapper">
-              <h5 className="h5">SQL</h5>
-              <data value="80">80%</data>
-            </div>
-            <div className="skill-progress-bg">
-              <div
-                className="skill-progress-fill"
-                style={{ width: "80%" }}
-              ></div>
-            </div>
-          </div>
-
-          {/* Frontend */}
-          <div className="skills-item">
-            <div className="title-wrapper">
-              <h5 className="h5">Python</h5>
-              <data value="60">60%</data>
-            </div>
-            <div className="skill-progress-bg">
-              <div
-                className="skill-progress-fill"
-                style={{ width: "60%" }}
-              ></div>
-            </div>
-          </div>
-
-          <div className="skills-item">
-            <div className="title-wrapper">
-              <h5 className="h5">Angular.js</h5>
-              <data value="70">70%</data>
-            </div>
-            <div className="skill-progress-bg">
-              <div
-                className="skill-progress-fill"
-                style={{ width: "70%" }}
-              ></div>
-            </div>
-          </div>
-
-          {/* Backend */}
-          <div className="skills-item">
-            <div className="title-wrapper">
-              <h5 className="h5">Node.js / Express.js</h5>
-              <data value="85">85%</data>
-            </div>
-            <div className="skill-progress-bg">
-              <div
-                className="skill-progress-fill"
-                style={{ width: "85%" }}
-              ></div>
-            </div>
-          </div>
-
-          <div className="skills-item">
-            <div className="title-wrapper">
-              <h5 className="h5">NestJS</h5>
-              <data value="75">75%</data>
-            </div>
-            <div className="skill-progress-bg">
-              <div
-                className="skill-progress-fill"
-                style={{ width: "75%" }}
-              ></div>
-            </div>
-          </div>
-
-          {/* Databases */}
-          <div className="skills-item">
-            <div className="title-wrapper">
-              <h5 className="h5">MongoDB</h5>
-              <data value="80">80%</data>
-            </div>
-            <div className="skill-progress-bg">
-              <div
-                className="skill-progress-fill"
-                style={{ width: "80%" }}
-              ></div>
-            </div>
-          </div>
-
-          <div className="skills-item">
-            <div className="title-wrapper">
-              <h5 className="h5">MySQL</h5>
-              <data value="80">80%</data>
-            </div>
-            <div className="skill-progress-bg">
-              <div
-                className="skill-progress-fill"
-                style={{ width: "80%" }}
-              ></div>
-            </div>
-          </div>
-
-          {/* Cloud & DevOps */}
-          <div className="skills-item">
-            <div className="title-wrapper">
-              <h5 className="h5">AWS</h5>
-              <data value="75">75%</data>
-            </div>
-            <div className="skill-progress-bg">
-              <div
-                className="skill-progress-fill"
-                style={{ width: "75%" }}
-              ></div>
-            </div>
-          </div>
-
-          <div className="skills-item">
-            <div className="title-wrapper">
-              <h5 className="h5">Azure</h5>
-              <data value="65">65%</data>
-            </div>
-            <div className="skill-progress-bg">
-              <div
-                className="skill-progress-fill"
-                style={{ width: "65%" }}
-              ></div>
-            </div>
-          </div>
-
-          <div className="skills-item">
-            <div className="title-wrapper">
-              <h5 className="h5">Docker</h5>
-              <data value="70">70%</data>
-            </div>
-            <div className="skill-progress-bg">
-              <div
-                className="skill-progress-fill"
-                style={{ width: "70%" }}
-              ></div>
-            </div>
-          </div>
-
-          <div className="skills-item">
-            <div className="title-wrapper">
-              <h5 className="h5">Linux</h5>
-              <data value="70">70%</data>
-            </div>
-            <div className="skill-progress-bg">
-              <div
-                className="skill-progress-fill"
-                style={{ width: "70%" }}
-              ></div>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
     </article>

@@ -2,10 +2,36 @@
   #style.css
 \*-----------------------------------*/
 
-/**
- * copyright 2022 @codewithsadee
- */
+* .resume-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
+.resume-download {
+  border: 0.5px solid #d4af37; /* gold-ish border */
+  color: var(--orange-yellow-crayola);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.2));
+  padding: 10px 14px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-2);
+  text-decoration: none;
+  font-size: var(--fs-6);
+}
+
+@media (max-width: 767px) {
+  /* stack header and download button on small screens */
+  .resume-header {
+    display: flex;
+    flex-direction: column-reverse; /* show download above education */
+    width: 100%;
+  }
+
+  .resume-header > .resume-controls {
+    margin-bottom: 16 px;
+    width: 100%;
+  }
+}
 /*-----------------------------------*\
   #CUSTOM PROPERTY
 \*-----------------------------------*/
@@ -382,13 +408,6 @@ main {
 }
 
 @media (min-width: 768px) {
-  .avatar-box {
-    width: 120px;
-    height: 120px;
-  }
-}
-
-@media (min-width: 1024px) {
   .avatar-box {
     width: 150px;
     height: 150px;

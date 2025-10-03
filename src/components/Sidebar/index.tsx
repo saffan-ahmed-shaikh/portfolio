@@ -79,7 +79,7 @@ export default function Sidebar() {
             <div className="contact-info">
               <p className="contact-title">Phone</p>
 
-              <a href="tel:+12133522795" className="contact-link">
+              <a href="tel:+918108360326" className="contact-link">
                 +91 8108360326
               </a>
             </div>
