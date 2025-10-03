@@ -217,8 +217,10 @@ article {
   --ionicon-stroke-width: 35px;
 }
 
+/* Pages should be visible by default; legacy JS toggles used `.active` to show/hide.
+   Keep the `.active` animation but ensure articles render when the app loads. */
 article {
-  display: none;
+  display: block;
 }
 
 article.active {
@@ -351,6 +353,46 @@ main {
 .avatar-box {
   background: var(--bg-gradient-onyx);
   border-radius: 20px;
+  /* make the avatar a positioned, responsive square container */
+  position: relative;
+  width: 72px;
+  height: 72px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Next/Image when using `fill` requires the parent to be positioned.
+   `.avatar-img` will cover the container and use object-fit to preserve aspect. */
+.avatar-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: inherit;
+}
+
+/* Responsive avatar sizing: scale up on larger breakpoints to match original design */
+@media (min-width: 580px) {
+  .avatar-box {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+@media (min-width: 768px) {
+  .avatar-box {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .avatar-box {
+    width: 150px;
+    height: 150px;
+  }
 }
 
 .info-content .name {
@@ -364,10 +406,10 @@ main {
 .info-content .title {
   color: var(--white-1);
   background: var(--onyx);
-  font-size: var(--fs-8);
+  font-size: 14px;
   font-weight: var(--fw-300);
   width: max-content;
-  padding: 3px 12px;
+  padding: 4px 14px;
   border-radius: 8px;
 }
 
@@ -409,15 +451,28 @@ main {
   display: none;
 }
 
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 per row */
+  gap: 20px 40px;
+}
+
+.skills-item {
+  width: 100%;
+}
+
 .sidebar-info_more {
   opacity: 0;
   visibility: hidden;
   transition: var(--transition-2);
+  display: none;
 }
 
 .sidebar.active .sidebar-info_more {
   opacity: 1;
   visibility: visible;
+  display: block;
+  transition: var(--transition-2);
 }
 
 .contacts-list {
@@ -743,7 +798,7 @@ main {
 
 .modal-avatar-box {
   background: var(--bg-gradient-onyx);
-  width: max-content;
+  width: max-content !important;
   border-radius: 14px;
   margin-bottom: 15px;
   box-shadow: var(--shadow-2);
@@ -1040,6 +1095,15 @@ main {
   margin-bottom: 15px;
 }
 
+/* Ensure Next/Image output fills the project-img container */
+.project-img .project-image,
+.project-img img.project-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  display: block;
+}
+
 .project-img::before {
   content: "";
   position: absolute;
@@ -1268,7 +1332,6 @@ textarea.form-input {
   height: 120px;
   max-height: 200px;
   resize: vertical;
-  margin-bottom: 25px;
 }
 
 textarea.form-input::-webkit-resizer {
@@ -1424,7 +1487,7 @@ textarea.form-input::-webkit-resizer {
    */
 
   .sidebar {
-    max-height: 180px;
+    max-height: 250px;
     margin-bottom: 30px;
   }
 
@@ -1440,8 +1503,9 @@ textarea.form-input::-webkit-resizer {
     border-radius: 30px;
   }
 
-  .avatar-box img {
-    width: 120px;
+  /* keep sizing for legacy img elements, but do not override Next/Image when using .avatar-img */
+  .avatar-box img:not(.avatar-img) {
+    width: 120px !important;
   }
 
   .info-content .name {
@@ -1551,7 +1615,7 @@ textarea.form-input::-webkit-resizer {
   }
 
   .testimonials-avatar-box img {
-    width: 80px;
+    width: 80px !important;
   }
 
   .testimonials-item-title {
@@ -1591,7 +1655,7 @@ textarea.form-input::-webkit-resizer {
   }
 
   .modal-avatar-box img {
-    width: 65px;
+    width: 65px !important;
   }
 
   .modal-img-wrapper > img {
@@ -1670,10 +1734,6 @@ textarea.form-input::-webkit-resizer {
     padding: 15px 20px;
   }
 
-  textarea.form-input {
-    margin-bottom: 30px;
-  }
-
   .form-btn {
     --fs-6: 16px;
     padding: 16px 20px;
@@ -1731,7 +1791,7 @@ textarea.form-input::-webkit-resizer {
   }
 
   .modal-avatar-box img {
-    width: 80px;
+    width: 80px !important;
   }
 
   /**
@@ -1977,12 +2037,23 @@ textarea.form-input::-webkit-resizer {
     z-index: 1;
   }
 
+  /* Override the small-breakpoint cap so on very large screens the sidebar can expand fully */
+  @media (min-width: 1240px) {
+    .sidebar,
+    .sidebar.active {
+      max-height: 100% !important;
+      height: 100% !important;
+      overflow: visible !important;
+    }
+  }
+
   .sidebar-info {
     flex-direction: column;
   }
 
-  .avatar-box img {
-    width: 150px;
+  /* keep sizing for legacy img elements, but do not override Next/Image when using .avatar-img */
+  .avatar-box img:not(.avatar-img) {
+    width: 150px !important;
   }
 
   .info-content .name {
