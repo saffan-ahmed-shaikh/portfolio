@@ -222,28 +222,30 @@ export default function Contact() {
                       />
                     </div>
 
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full py-6 rounded-xl font-semibold text-accent-foreground transition-all duration-200"
-                      style={{
-                        background: "var(--accent)",
-                        boxShadow: "0 4px 20px rgba(var(--glow-accent), 0.35)",
-                      }}
-                    >
-                      {isSubmitting ? (
-                        <span className="flex items-center gap-2">
-                          <span className="w-4 h-4 border-2 border-accent-foreground/30 border-t-accent-foreground rounded-full animate-spin" />
-                          Opening WhatsApp…
-                        </span>
-                      ) : (
-                        <span className="flex items-center gap-2">
-                          <MessageCircle className="h-4 w-4" />
-                          Send via WhatsApp
-                          <Send className="h-3.5 w-3.5 ml-1" />
-                        </span>
-                      )}
-                    </Button>
+                    <motion.div whileTap={{ scale: 0.95 }}>
+                      <Button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full py-6 rounded-xl font-semibold text-accent-foreground transition-all duration-200"
+                        style={{
+                          background: "var(--accent)",
+                          boxShadow: "0 4px 20px rgba(var(--glow-accent), 0.35)",
+                        }}
+                      >
+                        {isSubmitting ? (
+                          <span className="flex items-center gap-2">
+                            <span className="w-4 h-4 border-2 border-accent-foreground/30 border-t-accent-foreground rounded-full animate-spin" />
+                            Opening WhatsApp…
+                          </span>
+                        ) : (
+                          <span className="flex items-center gap-2">
+                            <MessageCircle className="h-4 w-4" />
+                            Send via WhatsApp
+                            <Send className="h-3.5 w-3.5 ml-1" />
+                          </span>
+                        )}
+                      </Button>
+                    </motion.div>
                   </form>
                 )}
               </div>

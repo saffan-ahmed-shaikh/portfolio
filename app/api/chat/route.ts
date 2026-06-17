@@ -37,7 +37,6 @@ He specializes in:
 - React.js / Next.js
 - TypeScript / JavaScript
 - Node.js + Express.js
-- NestJS
 - Python (Flask)
 - REST APIs
 - JWT + Passport.js authentication/authorization
@@ -116,7 +115,7 @@ Frontend:
 - SEO optimization
 
 Backend:
-- Node.js, Express.js, NestJS, Flask
+- Node.js, Express.js, Flask
 - REST APIs, JWT, Passport.js
 - Socket.io, Microservices, Redis
 

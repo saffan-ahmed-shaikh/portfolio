@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Briefcase,
   Award,
@@ -127,6 +128,7 @@ const milestones: Milestone[] = [
 ];
 
 export default function Experience() {
+  const isMobile = useIsMobile();
   return (
     <section
       id="experience"
@@ -143,7 +145,7 @@ export default function Experience() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: isMobile ? 0.1 : undefined }}
           transition={{ duration: 0.6 }}
           className="space-y-5 mb-20 text-center"
         >
@@ -167,7 +169,7 @@ export default function Experience() {
             <motion.div
               initial={{ scaleY: 0, originY: 0 }}
               whileInView={{ scaleY: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, amount: isMobile ? 0.1 : undefined, margin: isMobile ? undefined : "-100px" }}
               transition={{ duration: 1.5, ease: "easeInOut" }}
               className="w-full h-full bg-gradient-to-b from-indigo-500 via-purple-500 to-emerald-500 origin-top"
             />
@@ -193,7 +195,7 @@ export default function Experience() {
                     <motion.div
                       initial={{ scale: 0 }}
                       whileInView={{ scale: 1 }}
-                      viewport={{ once: true, margin: "-80px" }}
+                      viewport={{ once: true, amount: isMobile ? 0.1 : undefined, margin: isMobile ? undefined : "-80px" }}
                       transition={{
                         type: "spring",
                         stiffness: 260,
@@ -216,8 +218,9 @@ export default function Experience() {
                   <motion.div
                     initial={{ opacity: 0, x: isEven ? 35 : -35, y: 15 }}
                     whileInView={{ opacity: 1, x: 0, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
+                    viewport={{ once: true, amount: isMobile ? 0.1 : undefined, margin: isMobile ? undefined : "-100px" }}
                     transition={{ duration: 0.55, ease: "easeOut" }}
+                    whileTap={{ scale: 0.98 }}
                     className="w-full sm:w-1/2 pl-12 sm:pl-0 sm:px-8"
                   >
                     <div className="group relative p-6 rounded-2xl border border-border bg-card shadow-md transition-all duration-300 hover:border-transparent hover:shadow-xl overflow-hidden">

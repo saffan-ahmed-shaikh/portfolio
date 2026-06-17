@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 import {
   ExternalLink,
   GitBranch,
@@ -140,7 +141,7 @@ const projects: Project[] = [
       "Yjs",
       "TailwindCSS",
     ],
-    category: "Web",
+    category: "Enterprise",
     featured: true,
     badge: "Full Stack",
     badgeColors: { from: "#8b5cf6", to: "#6d28d9" },
@@ -264,6 +265,7 @@ function ProjectCard({
   isFeatured,
   onOpenCaseStudy,
 }: ProjectCardProps) {
+  const isMobile = useIsMobile();
   const cardRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [spotlight, setSpotlight] = useState({ x: 50, y: 50, opacity: 0 });
@@ -293,7 +295,7 @@ function ProjectCard({
       y: 0,
       transition: {
         duration: 0.55,
-        delay: index * 0.08,
+        delay: index * (isMobile ? 0.05 : 0.08),
         ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
       },
     },
@@ -304,7 +306,8 @@ function ProjectCard({
       variants={cardVariants}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, amount: isMobile ? 0.1 : undefined, margin: isMobile ? undefined : "-80px" }}
+      whileTap={{ scale: 0.95 }}
       className={isFeatured ? "md:col-span-2" : ""}
     >
       <div
@@ -378,7 +381,7 @@ function ProjectCard({
                   href={project.links.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center w-8 h-8 rounded-full border border-border/60 bg-background/70 text-muted-foreground hover:text-foreground hover:border-border transition-colors cursor-pointer"
+                  className="flex items-center justify-center w-8 h-8 rounded-full border border-border/60 bg-background/70 text-muted-foreground hover:text-foreground hover:border-border active:scale-90 transition-all cursor-pointer"
                   title="GitHub"
                 >
                   <GitBranch className="h-3.5 w-3.5" />
@@ -394,7 +397,7 @@ function ProjectCard({
                   href={project.links.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-white transition-all duration-200 hover:scale-105 hover:shadow-lg cursor-pointer"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-white transition-all duration-200 hover:scale-105 active:scale-95 hover:shadow-lg cursor-pointer"
                   style={{
                     background: `linear-gradient(135deg, ${project.badgeColors.from}, ${project.badgeColors.to})`,
                     boxShadow: isHovered
@@ -495,13 +498,14 @@ function ProjectCard({
               )}
             </div>
 
-            <button
+            <motion.button
               onClick={() => onOpenCaseStudy(project)}
+              whileTap={{ scale: 0.95 }}
               className="flex items-center gap-1 px-3 py-1.5 rounded-xl border border-border text-xs font-bold text-foreground hover:bg-muted transition-colors cursor-pointer shrink-0"
             >
               <Info className="h-3 w-3" />
               Case Study
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>
@@ -511,6 +515,7 @@ function ProjectCard({
 
 /* ── Main Section ── */
 export default function Projects() {
+  const isMobile = useIsMobile();
   const [activeCategory, setActiveCategory] = useState<Category>("All");
   const [activeCaseStudy, setActiveCaseStudy] = useState<Project | null>(null);
   const [activeTab, setActiveTab] = useState<
@@ -539,7 +544,7 @@ export default function Projects() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: true, amount: isMobile ? 0.1 : undefined, margin: isMobile ? undefined : "-80px" }}
           transition={{ duration: 0.6 }}
           className="space-y-5 mb-10"
         >
@@ -562,14 +567,15 @@ export default function Projects() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: true, amount: isMobile ? 0.1 : undefined, margin: isMobile ? undefined : "-80px" }}
           transition={{ duration: 0.5, delay: 0.15 }}
           className="flex flex-wrap gap-2 mb-10"
         >
           {categories.map((cat) => (
-            <button
+            <motion.button
               key={cat}
               onClick={() => setActiveCategory(cat)}
+              whileTap={{ scale: 0.95 }}
               className="relative px-5 py-2 rounded-full text-sm font-medium transition-all duration-250 cursor-pointer"
               style={{
                 background:
@@ -591,7 +597,7 @@ export default function Projects() {
                   ({projects.filter((p) => p.category === cat).length})
                 </span>
               )}
-            </button>
+            </motion.button>
           ))}
         </motion.div>
 
@@ -670,14 +676,16 @@ export default function Projects() {
                     {activeCaseStudy.shortTitle} Case Study
                   </h3>
                 </div>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="rounded-xl hover:bg-muted text-muted-foreground hover:text-foreground cursor-pointer"
-                  onClick={() => setActiveCaseStudy(null)}
-                >
-                  <X className="h-5 w-5" />
-                </Button>
+                <motion.div whileTap={{ scale: 0.95 }}>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="rounded-xl hover:bg-muted text-muted-foreground hover:text-foreground cursor-pointer"
+                    onClick={() => setActiveCaseStudy(null)}
+                  >
+                    <X className="h-5 w-5" />
+                  </Button>
+                </motion.div>
               </div>
 
               {/* Drawer Content Area */}
@@ -701,26 +709,27 @@ export default function Projects() {
 
                 {/* Tab buttons switcher */}
                 <div className="flex border-b border-border text-xs font-bold uppercase tracking-wider">
-                  {[
+                  {([
                     { id: "overview", label: "Overview", icon: Info },
                     { id: "architecture", label: "Architecture", icon: Layers },
                     { id: "challenges", label: "Challenges", icon: Settings },
-                  ].map((tab) => {
+                  ] as const).map((tab) => {
                     const TabIcon = tab.icon;
                     const isActive = activeTab === tab.id;
                     return (
-                      <button
+                      <motion.button
                         key={tab.id}
-                        onClick={() => setActiveTab(tab.id as any)}
+                        onClick={() => setActiveTab(tab.id)}
+                        whileTap={{ scale: 0.95 }}
                         className={`flex-1 flex items-center justify-center gap-1.5 py-3 border-b-2 font-bold cursor-pointer transition-colors ${
                           isActive
                             ? "border-accent text-accent"
                             : "border-transparent text-muted-foreground hover:text-foreground"
                         }`}
                       >
-                        <TabIcon className="h-3.5 w-3.5" />
-                        <span>{tab.label}</span>
-                      </button>
+                          <TabIcon className="h-3.5 w-3.5" />
+                          <span>{tab.label}</span>
+                        </motion.button>
                     );
                   })}
                 </div>
@@ -857,10 +866,11 @@ export default function Projects() {
               {/* Drawer footer link */}
               {activeCaseStudy.links.live && (
                 <div className="p-5 border-t border-border bg-muted/20">
-                  <a
+                  <motion.a
                     href={activeCaseStudy.links.live}
                     target="_blank"
                     rel="noopener noreferrer"
+                    whileTap={{ scale: 0.95 }}
                     className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-white font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-opacity cursor-pointer shadow-md"
                     style={{
                       background: `linear-gradient(135deg, ${activeCaseStudy.badgeColors.from}, ${activeCaseStudy.badgeColors.to})`,
@@ -868,7 +878,7 @@ export default function Projects() {
                   >
                     <ExternalLink className="h-4 w-4" />
                     Launch Interactive App Demo
-                  </a>
+                  </motion.a>
                 </div>
               )}
             </motion.div>

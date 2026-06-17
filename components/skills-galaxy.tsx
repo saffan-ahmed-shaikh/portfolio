@@ -366,7 +366,7 @@ export default function SkillsGalaxy() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-120 h-120 rounded-full blur-3xl opacity-10 bg-indigo-500" />
       </div>
 
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         {/* Header */}
         <div className="space-y-5 mb-14">
           <span className="section-label">
@@ -387,7 +387,7 @@ export default function SkillsGalaxy() {
           {/* Orbit canvas — 3/5 */}
           <div className="lg:col-span-3 flex justify-center items-center h-115 relative select-none">
             <div
-              className="relative w-110 h-110 flex items-center justify-center rounded-full scale-[0.8] sm:scale-100"
+              className="relative w-full max-w-[440px] aspect-square flex items-center justify-center rounded-full scale-90 sm:scale-100 origin-center"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
@@ -513,8 +513,8 @@ export default function SkillsGalaxy() {
             </div>
           </div>
 
-          {/* Details panel — 2/5 */}
-          <div className="lg:col-span-2">
+          {/* Details panel */}
+          <div className="w-full max-w-full sm:px-0">
             <AnimatePresence mode="wait">
               <motion.div
                 key={selectedTech.name}

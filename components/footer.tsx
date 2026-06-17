@@ -93,6 +93,7 @@ export default function Footer() {
             exit={{ opacity: 0, scale: 0.8, y: 10 }}
             transition={{ duration: 0.22 }}
             onClick={scrollToTop}
+            whileTap={{ scale: 0.9 }}
             className="fixed bottom-24 right-6 z-50 flex items-center justify-center w-11 h-11 rounded-full text-accent-foreground shadow-xl transition-transform duration-200 hover:scale-110 cursor-pointer"
             style={{
               background: "var(--accent)",

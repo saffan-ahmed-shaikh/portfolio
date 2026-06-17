@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { User, Wifi, Gauge, Bot, Award } from "lucide-react";
 
 interface Stat {
@@ -91,10 +92,10 @@ function StatCounter({ stat }: { stat: Stat }) {
   );
 }
 
-const container = {
+const container = (isMobile: boolean) => ({
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.1 } },
-};
+  show: { opacity: 1, transition: { staggerChildren: isMobile ? 0.05 : 0.1 } },
+});
 
 const item = {
   hidden: { opacity: 0, y: 24 },
@@ -109,6 +110,7 @@ const item = {
 };
 
 export default function About() {
+  const isMobile = useIsMobile();
   return (
     <section
       id="about"
@@ -164,27 +166,28 @@ export default function About() {
             className="grid grid-cols-2 sm:grid-cols-4 gap-6"
           >
             {stats.map((s) => (
-              <div
+              <motion.div
                 key={s.label}
+                whileTap={{ scale: 0.95 }}
                 className="flex flex-col items-center justify-center p-5 rounded-2xl border border-border/50 bg-card hover:border-accent/30 transition-colors duration-300"
               >
                 <StatCounter stat={s} />
-              </div>
+              </motion.div>
             ))}
           </motion.div>
 
           {/* Cards */}
           <motion.div
-            variants={container}
+            variants={container(isMobile)}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
+            viewport={{ once: true, margin: isMobile ? undefined : "-80px", amount: isMobile ? 0.1 : undefined }}
             className="grid gap-5 md:grid-cols-2"
           >
             {cards.map((card) => {
               const Icon = card.icon;
               return (
-                <motion.div key={card.title} variants={item}>
+                <motion.div key={card.title} variants={item} whileTap={{ scale: 0.98 }}>
                   <div className="group relative h-full rounded-2xl border border-border/50 bg-card p-6 overflow-hidden transition-all duration-300 hover:border-transparent hover:shadow-lg">
                     {/* Hover glow */}
                     <div

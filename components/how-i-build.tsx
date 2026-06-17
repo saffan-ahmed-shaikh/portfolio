@@ -142,9 +142,10 @@ export default function HowIBuild() {
             const Icon = step.icon;
             const isActive = idx === activeStepIdx;
             return (
-              <button
+              <motion.button
                 key={step.id}
                 onClick={() => setActiveStepIdx(idx)}
+                whileTap={{ scale: 0.95 }}
                 className={`flex items-center gap-2 px-5 py-3.5 rounded-xl border text-xs font-bold uppercase tracking-wider transition-all duration-250 cursor-pointer ${
                   isActive
                     ? "bg-accent border-transparent text-accent-foreground shadow-lg"
@@ -158,7 +159,7 @@ export default function HowIBuild() {
               >
                 <Icon className="h-4 w-4 shrink-0" />
                 <span>{step.label}</span>
-              </button>
+              </motion.button>
             );
           })}
         </div>
@@ -237,13 +238,14 @@ export default function HowIBuild() {
 
               {/* Minimalist process connector representation */}
               {activeStepIdx < WORKFLOW_STEPS.length - 1 && (
-                <button
+                <motion.button
                   onClick={() => setActiveStepIdx((idx) => idx + 1)}
+                  whileTap={{ scale: 0.95 }}
                   className="bottom-3 right-1 absolute md:bottom-4 md:right-4 flex items-center gap-1.5 text-[10px] font-bold text-accent uppercase tracking-wider hover:underline cursor-pointer"
                 >
                   <span>Next Step</span>
                   <ArrowRight className="h-3 w-3" />
-                </button>
+                </motion.button>
               )}
             </div>
           </motion.div>

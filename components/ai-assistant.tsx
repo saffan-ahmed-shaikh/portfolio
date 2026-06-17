@@ -74,7 +74,7 @@ const SYSTEM_KNOWLEDGE = [
   {
     keywords: ["skill", "tech", "stack", "language", "framework", "database"],
     response:
-      "Safwan’s tech stack includes React.js, Next.js, TypeScript, and Python. For backend services he uses Node.js + Express.js (and NestJS), with REST APIs, JWT authentication, RBAC, and structured error handling. He also works with MySQL/PostgreSQL/MongoDB and real-time systems like Socket.io; he integrates with enterprise workflows such as ServiceNow.",
+      "Safwan’s tech stack includes React.js, Next.js, TypeScript, and Python. For backend services he uses Node.js + Express.js, with REST APIs, JWT authentication, RBAC, and structured error handling. He also works with MySQL/PostgreSQL/MongoDB, Redis caching, Docker, and real-time systems like Socket.io; he integrates with enterprise workflows such as ServiceNow.",
   },
   {
     keywords: ["project", "work", "portfolio", "built", "apps"],

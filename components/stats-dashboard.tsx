@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 import {
   BarChart as BarChartIcon,
   GitPullRequest,
@@ -89,6 +90,7 @@ function StatCounter({
 }
 
 export default function StatsDashboard() {
+  const isMobile = useIsMobile();
   const [gitBlocks, setGitBlocks] = useState<GitBlock[]>([]);
   const [isMounted, setIsMounted] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -157,11 +159,11 @@ export default function StatsDashboard() {
         </motion.div>
 
         {/* Layout Grid */}
-        <div className="grid gap-6 lg:grid-cols-5">
+        <div className="grid gap-6 lg:grid-cols-5 w-full max-w-full">
           {/* Left panel: Counters + Github Grid — 3/5 width */}
-          <div className="lg:col-span-3 space-y-6">
+          <div className="lg:col-span-3 space-y-6 w-full max-w-full min-w-0">
             {/* Stat Counters Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full max-w-full">
               {[
                 { label: "Experience", value: 4, suffix: "y+", icon: Calendar },
                 {
@@ -190,7 +192,8 @@ export default function StatsDashboard() {
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: i * 0.08, duration: 0.45 }}
+                    transition={{ delay: i * (isMobile ? 0.05 : 0.08), duration: 0.45 }}
+                    whileTap={{ scale: 0.95 }}
                     className="p-5 rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm flex flex-col justify-between"
                   >
                     <div className="flex justify-between items-start mb-3">
@@ -211,7 +214,7 @@ export default function StatsDashboard() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="p-6 rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm"
+              className="p-6 rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm w-full max-w-full overflow-hidden"
             >
               <div className="flex justify-between items-center mb-4">
                 <div>
@@ -258,23 +261,23 @@ export default function StatsDashboard() {
           </div>
 
           {/* Right panel: Recharts — 2/5 width */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-6 w-full max-w-full min-w-0">
             {/* Tab layout or grid layout for Recharts */}
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1 w-full max-w-full">
               {/* Radar Chart (Full Capabilities) */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.96 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="p-5 rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm flex flex-col h-72"
+                className="p-5 rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm flex flex-col h-72 w-full max-w-full"
               >
                 <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3">
                   Skill Breakdown
                 </h4>
                 <div
                   style={{ height: "220px" }}
-                  className="w-full min-w-0 text-[9px] font-mono"
+                  className="w-full min-w-0 max-w-full text-[9px] font-mono"
                 >
                   {isMounted ? (
                     <ResponsiveContainer width="100%" height="100%">
@@ -315,14 +318,14 @@ export default function StatsDashboard() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.12 }}
-                className="p-5 rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm flex flex-col h-72"
+                className="p-5 rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm flex flex-col h-72 w-full max-w-full"
               >
                 <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3">
                   Monthly Commits
                 </h4>
                 <div
                   style={{ height: "220px" }}
-                  className="w-full min-w-0 text-[9px] font-mono"
+                  className="w-full min-w-0 max-w-full text-[9px] font-mono"
                 >
                   {isMounted ? (
                     <ResponsiveContainer width="100%" height="100%">

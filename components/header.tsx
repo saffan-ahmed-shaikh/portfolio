@@ -140,60 +140,64 @@ export default function Header() {
             className="flex items-center gap-2"
           >
             {/* Theme toggle */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/10 transition-colors cursor-pointer"
-              aria-label="Toggle theme"
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.span
-                  key={theme}
-                  initial={{ rotate: -90, opacity: 0, scale: 0.8 }}
-                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
-                  exit={{ rotate: 90, opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.22 }}
-                >
-                  {theme === "dark" ? (
-                    <Sun className="h-5 w-5" />
-                  ) : (
-                    <Moon className="h-5 w-5" />
-                  )}
-                </motion.span>
-              </AnimatePresence>
-            </Button>
+            <motion.div whileTap={{ scale: 0.95 }}>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/10 transition-colors cursor-pointer"
+                aria-label="Toggle theme"
+              >
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={theme}
+                    initial={{ rotate: -90, opacity: 0, scale: 0.8 }}
+                    animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                    exit={{ rotate: 90, opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.22 }}
+                  >
+                    {theme === "dark" ? (
+                      <Sun className="h-5 w-5" />
+                    ) : (
+                      <Moon className="h-5 w-5" />
+                    )}
+                  </motion.span>
+                </AnimatePresence>
+              </Button>
+            </motion.div>
 
             {/* Mobile menu button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen((o) => !o)}
-              className="md:hidden rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/10 cursor-pointer"
-              aria-label="Toggle navigation menu"
-              aria-expanded={isOpen}
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.span
-                  key={isOpen ? "close" : "open"}
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.18 }}
-                >
-                  {isOpen ? (
-                    <X className="h-5 w-5" />
-                  ) : (
-                    <Menu className="h-5 w-5" />
-                  )}
-                </motion.span>
-              </AnimatePresence>
-            </Button>
+            <motion.div whileTap={{ scale: 0.95 }}>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsOpen((o) => !o)}
+                className="md:hidden rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/10 cursor-pointer"
+                aria-label="Toggle navigation menu"
+                aria-expanded={isOpen}
+              >
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={isOpen ? "close" : "open"}
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.18 }}
+                  >
+                    {isOpen ? (
+                      <X className="h-5 w-5" />
+                    ) : (
+                      <Menu className="h-5 w-5" />
+                    )}
+                  </motion.span>
+                </AnimatePresence>
+              </Button>
+            </motion.div>
           </motion.div>
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile overlay — fullscreen slide from right */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -206,16 +210,16 @@ export default function Header() {
               background: "var(--background)",
               backdropFilter: "blur(20px)",
             }}
-          >
+              >
             <nav className="mx-auto max-w-6xl px-4 py-4 flex flex-col gap-1">
-              {NAV_LINKS.map((link, i) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
+                {NAV_LINKS.map((link, i) => (
+                  <motion.a
+                    key={link.href}
+                    href={link.href}
                   initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  onClick={() => setIsOpen(false)}
+                    transition={{ delay: i * 0.05 }}
+                    onClick={() => setIsOpen(false)}
                   className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors duration-200"
                   style={{
                     color: isActive(link.href)
@@ -234,10 +238,10 @@ export default function Header() {
                         : "var(--border)",
                     }}
                   />
-                  {link.label}
-                </motion.a>
-              ))}
-            </nav>
+                    {link.label}
+                  </motion.a>
+                ))}
+              </nav>
           </motion.div>
         )}
       </AnimatePresence>

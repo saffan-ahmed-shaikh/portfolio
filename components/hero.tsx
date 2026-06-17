@@ -67,7 +67,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative overflow-hidden pt-24 pb-36 sm:pt-36 sm:pb-44"
+      className="relative overflow-hidden py-24 sm:pt-36 sm:pb-44"
     >
       {/* ── Decorative blobs ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">

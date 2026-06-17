@@ -51,6 +51,7 @@ export default function SocialLinks() {
               bg-background/60 backdrop-blur-md
               shadow-md transition-all duration-300 ease-in-out
               hover:-translate-y-1.5 hover:scale-105
+              active:scale-95
               hover:shadow-xl
               ${social.hover}
             `}
