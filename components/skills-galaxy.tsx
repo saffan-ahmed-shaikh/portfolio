@@ -514,7 +514,7 @@ export default function SkillsGalaxy() {
           </div>
 
           {/* Details panel */}
-          <div className="w-full max-w-full sm:px-0">
+          <div className="w-full max-w-full sm:px-0 lg:col-span-2" >
             <AnimatePresence mode="wait">
               <motion.div
                 key={selectedTech.name}
